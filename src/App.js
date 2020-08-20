@@ -1,20 +1,24 @@
-import React from 'react';
+import React, { Component } from 'react';
 import logo from './logo.svg';
 import classes from './BlockCard.module.css';
 import BlockCard from './BlockCard';
 import { isArrayEmpty } from "./utils";
+import './App.css'
 
-function App() {
-  const firstName = "Yash";
-  const lastName = "Srivastava"
-  const age = 20;
-  const job = "Student"
-  const inputPlaceholder = "Enter Your Details"
+class App extends Component {
+  state = {
+    hideBlog: true
+  }
+  firstName = "Yash";
+  lastName = "Srivastava"
+  age = 20;
+  job = "Student"
+  inputPlaceholder = "Enter Your Details"
   // const getFullName = (firstName, lastName) => {
   //   return `${firstName} ${lastName}`
   // }
-  const mArr = [1, 2, 3, 4, 5]
-  const mObj = [
+  mArr = [1, 2, 3, 4, 5]
+  mObj = [
     {
       id: 1,
       blogName: "Yash Srivastava",
@@ -28,7 +32,7 @@ function App() {
       blogName: "Mohit Tiwari",
       description: "Lorem Ipsum Dolar Lorem Ipsum Dolar Lorem Ipsum Dolar Lorem Ipsum Dolar Lorem Ipsum Dolar"
     }]
-  const blogCards = isArrayEmpty(mObj) ? [] : mObj.map((item) => {
+  blogCards = isArrayEmpty(this.mObj) ? [] : this.mObj.map((item) => {
     return (
       <BlockCard key={item.id} title={item.blogName} description={item.description} />
       // <div className="blogCard" key={item.id}>
@@ -38,19 +42,33 @@ function App() {
       // </div>
     )
   })
-  return (
-    <div className={classes.App}>
-      {/* <div className="blogCard">
-        <h3>Blog Title 1</h3>
-        <p>Lorem Ipsum Dolar
-        Lorem Ipsum Dolar
-        Lorem Ipsum Dolar
-        Lorem Ipsum Dolar Lorem Ipsum Dolar
-        </p>
-      </div> */}
-      {blogCards}
-    </div>
-  );
+  hideblogs = () => {
+    let toggleblogs = !this.state.hideBlog;
+    this.setState({ hideBlog: toggleblogs })
+    // alert("button is clicked")
+  }
+  render() {
+    return (
+      <div>
+        <button onClick={this.hideblogs}>Hide List</button>
+        <br></br>
+        {/* <div className="blogCard">
+          <h3>Blog Title 1</h3>
+          <p>Lorem Ipsum Dolar
+          Lorem Ipsum Dolar
+          Lorem Ipsum Dolar
+          Lorem Ipsum Dolar Lorem Ipsum Dolar
+          </p>
+        </div> */}
+        <div className="App">
+          {
+            this.state.hideBlog ? this.blogCards : null
+          }
+        </div>
+      </div >
+    );
+  }
+
 }
 
 export default App;
