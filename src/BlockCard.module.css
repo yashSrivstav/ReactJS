@@ -6,6 +6,15 @@
     background-color: aqua;
     box-shadow: 0 2px 5px #ccc;
     width: 300px;
+    font-size: 20px;
+  }
+  .button{
+    font-size: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px #ccc;
+  }
+  .LikeCount{
+    font-weight: 600;
   }
   @media(min-width:992px){
   

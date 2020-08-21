@@ -22,19 +22,25 @@ class App extends Component {
     {
       id: 1,
       blogName: "Yash Srivastava",
-      description: "Lorem Ipsum Dolar Lorem Ipsum Dolar Lorem Ipsum Dolar Lorem Ipsum Dolar Lorem Ipsum Dolar"
+      description: "Lorem Ipsum Dolar Lorem Ipsum Dolar Lorem Ipsum Dolar Lorem Ipsum Dolar Lorem Ipsum Dolar",
+      LikeCount: 0
     }, {
       id: 2,
       blogName: "Muskan Rajpal",
-      description: "Lorem Ipsum Dolar Lorem Ipsum Dolar Lorem Ipsum Dolar Lorem Ipsum Dolar Lorem Ipsum Dolar"
+      description: "Lorem Ipsum Dolar Lorem Ipsum Dolar Lorem Ipsum Dolar Lorem Ipsum Dolar Lorem Ipsum Dolar",
+      LikeCount: 0
     }, {
       id: 3,
       blogName: "Mohit Tiwari",
-      description: "Lorem Ipsum Dolar Lorem Ipsum Dolar Lorem Ipsum Dolar Lorem Ipsum Dolar Lorem Ipsum Dolar"
+      description: "Lorem Ipsum Dolar Lorem Ipsum Dolar Lorem Ipsum Dolar Lorem Ipsum Dolar Lorem Ipsum Dolar",
+      LikeCount: 0
     }]
+  LikeCountUpdate = () => {
+    alert("This is noob");
+  }
   blogCards = isArrayEmpty(this.mObj) ? [] : this.mObj.map((item) => {
     return (
-      <BlockCard key={item.id} title={item.blogName} description={item.description} />
+      <BlockCard key={item.id} title={item.blogName} description={item.description} LikeCount={item.LikeCount} LikeCountUpdate={this.LikeCountUpdate} />
       // <div className="blogCard" key={item.id}>
       //   <h3>{item.blogName}</h3>
       //   <p>{item.description}
@@ -43,14 +49,16 @@ class App extends Component {
     )
   })
   hideblogs = () => {
-    let toggleblogs = !this.state.hideBlog;
-    this.setState({ hideBlog: toggleblogs })
+    // let toggleblogs = !this.state.hideBlog;
+    this.setState((prevState, prevProps) => {
+      return { hideBlog: !prevState.hideBlog }
+    });
     // alert("button is clicked")
   }
   render() {
     return (
       <div>
-        <button onClick={this.hideblogs}>Hide List</button>
+        <button onClick={this.hideblogs}>{this.state.hideBlog ? 'Hide Blog' : 'Show Blog'}</button>
         <br></br>
         {/* <div className="blogCard">
           <h3>Blog Title 1</h3>
