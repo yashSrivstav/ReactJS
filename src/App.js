@@ -7,7 +7,24 @@ import './App.css'
 
 class App extends Component {
   state = {
-    hideBlog: true
+    hideBlog: true,
+    mObj: [
+      {
+        id: 1,
+        blogName: "Yash Srivastava",
+        description: "Lorem Ipsum Dolar Lorem Ipsum Dolar Lorem Ipsum Dolar Lorem Ipsum Dolar Lorem Ipsum Dolar",
+        LikeCount: 0
+      }, {
+        id: 2,
+        blogName: "Muskan Rajpal",
+        description: "Lorem Ipsum Dolar Lorem Ipsum Dolar Lorem Ipsum Dolar Lorem Ipsum Dolar Lorem Ipsum Dolar",
+        LikeCount: 0
+      }, {
+        id: 3,
+        blogName: "Mohit Tiwari",
+        description: "Lorem Ipsum Dolar Lorem Ipsum Dolar Lorem Ipsum Dolar Lorem Ipsum Dolar Lorem Ipsum Dolar",
+        LikeCount: 0
+      }]
   }
   firstName = "Yash";
   lastName = "Srivastava"
@@ -18,36 +35,17 @@ class App extends Component {
   //   return `${firstName} ${lastName}`
   // }
   mArr = [1, 2, 3, 4, 5]
-  mObj = [
-    {
-      id: 1,
-      blogName: "Yash Srivastava",
-      description: "Lorem Ipsum Dolar Lorem Ipsum Dolar Lorem Ipsum Dolar Lorem Ipsum Dolar Lorem Ipsum Dolar",
-      LikeCount: 0
-    }, {
-      id: 2,
-      blogName: "Muskan Rajpal",
-      description: "Lorem Ipsum Dolar Lorem Ipsum Dolar Lorem Ipsum Dolar Lorem Ipsum Dolar Lorem Ipsum Dolar",
-      LikeCount: 0
-    }, {
-      id: 3,
-      blogName: "Mohit Tiwari",
-      description: "Lorem Ipsum Dolar Lorem Ipsum Dolar Lorem Ipsum Dolar Lorem Ipsum Dolar Lorem Ipsum Dolar",
-      LikeCount: 0
-    }]
-  LikeCountUpdate = () => {
-    alert("This is noob");
+
+  LikeCountUpdate = (pos) => {
+    const updateList = this.state.mObj;
+    const updateCountobj = updateList[pos];
+    updateCountobj.LikeCount = updateCountobj.LikeCount + 1;
+    updateList[pos] = updateCountobj;
+
+    this.setState({ mObj: updateList })
   }
-  blogCards = isArrayEmpty(this.mObj) ? [] : this.mObj.map((item) => {
-    return (
-      <BlockCard key={item.id} title={item.blogName} description={item.description} LikeCount={item.LikeCount} LikeCountUpdate={this.LikeCountUpdate} />
-      // <div className="blogCard" key={item.id}>
-      //   <h3>{item.blogName}</h3>
-      //   <p>{item.description}
-      //   </p>
-      // </div>
-    )
-  })
+
+
   hideblogs = () => {
     // let toggleblogs = !this.state.hideBlog;
     this.setState((prevState, prevProps) => {
@@ -56,8 +54,20 @@ class App extends Component {
     // alert("button is clicked")
   }
   render() {
+    console.log("Render Called")
+    const blogCards = isArrayEmpty(this.state.mObj) ? [] : this.state.mObj.map((item, pos) => {
+      return (
+        <BlockCard key={item.id} title={item.blogName} description={item.description} LikeCount={item.LikeCount} LikeCountUpdate={() => this.LikeCountUpdate(pos)} />
+        // <div className="blogCard" key={item.id}>
+        //   <h3>{item.blogName}</h3>
+        //   <p>{item.description}
+        //   </p>
+        // </div>
+      )
+    })
     return (
-      <div>
+
+      < div >
         <button onClick={this.hideblogs}>{this.state.hideBlog ? 'Hide Blog' : 'Show Blog'}</button>
         <br></br>
         {/* <div className="blogCard">
@@ -70,7 +80,7 @@ class App extends Component {
         </div> */}
         <div className="App">
           {
-            this.state.hideBlog ? this.blogCards : null
+            this.state.hideBlog ? blogCards : null
           }
         </div>
       </div >
