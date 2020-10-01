@@ -22,7 +22,7 @@ class App extends Component {
         LikeCount: 0
       }, {
         id: 3,
-        blogName: "Mohit Tiwari",
+        blogName: "Sameeksha Rathi",
         description: "Lorem Ipsum Dolar Lorem Ipsum Dolar Lorem Ipsum Dolar Lorem Ipsum Dolar Lorem Ipsum Dolar",
         LikeCount: 0
       }]
