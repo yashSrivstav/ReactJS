@@ -6,14 +6,15 @@ import { isArrayEmpty } from "./utils";
 import './App.css'
 
 class App extends Component {
-  state = {
+  
+  state =  {
     hideBlog: true,
     mObj: [
       {
         id: 1,
         blogName: "Yash Srivastava",
         description: "Lorem Ipsum Dolar Lorem Ipsum Dolar Lorem Ipsum Dolar Lorem Ipsum Dolar Lorem Ipsum Dolar",
-        LikeCount: 0
+        LikeCount: 0 
       }, {
         id: 2,
         blogName: "Muskan Rajpal",
@@ -50,7 +51,7 @@ class App extends Component {
     // let toggleblogs = !this.state.hideBlog;
     this.setState((prevState, prevProps) => {
       return { hideBlog: !prevState.hideBlog }
-    });
+    }); 
     // alert("button is clicked")
   }
   render() {
@@ -79,7 +80,7 @@ class App extends Component {
           </p>
         </div> */}
         <div className="App">
-          {
+          { 
             this.state.hideBlog ? blogCards : null
           }
         </div>
@@ -88,5 +89,7 @@ class App extends Component {
   }
 
 }
+
+
 
 export default App;
